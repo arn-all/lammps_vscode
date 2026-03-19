@@ -811,27 +811,47 @@ function build_plot_html(panel: PlotPanel, node_lib_path: Uri, plotly_lib: Uri, 
           </div>
         </div>
         
-        <div id="dump" class="tabcontent">
-          <div>
-            <button type="button" id="load_dump_btn">📂 Open Lammps Dump File</button>
-            <label style="margin-left: 20px;">
-              <input type="checkbox" id="live_update_toggle" checked>
-              Live Updates
-            </label>
-            <div id="dump_path_div"></div><br>
-            <div id="dump_div" class="dump_div" align="center">
+        <div id="dump" class="tabcontent" style="display:flex; flex-direction:column; height:100%;">
+            <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:20px;">
+                <div id="load_dump_btn" role="button" tabindex="0" title="Click to browse for a LAMMPS dump file"
+                     style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:20px; background:var(--vscode-editor-background); color:var(--vscode-editor-foreground); border-radius:6px; cursor:pointer; transition:all 0.2s; user-select:none;">
+                    <span style="font-size:32px;">📂</span>
+                    <div style="text-align:center;">
+                        <div style="font-weight:600; font-size:14px;">Open LAMMPS Dump File</div>
+                        <div style="font-size:11px; opacity:0.75; margin-top:2px;">Click to browse</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:15px; padding:10px 15px; border-top:1px solid var(--vscode-panel-border);">
+                <label style="display:flex; align-items:center; gap:6px; user-select:none;">
+                  <input type="checkbox" id="live_update_toggle" checked>
+                  Live Updates
+                </label>
+            </div>
+            <div id="dump_path_div" style="padding:5px 15px; font-size:11px; opacity:0.7;"></div>
+            <div id="dump_div" class="dump_div" style="flex:2; overflow:auto;">
             <!-- Plotly chart will be drawn inside this DIV -->
             </div>
-          </div>
         </div>
         
-        <div id="logs" class="tabcontent">
-            <button type="button" id="load_log_btn">📂 Open Lammps Log File</button>
-            <label style="margin-left: 20px;">
-              <input type="checkbox" id="live_update_toggle_logs" checked>
-              Live Updates
-            </label>
-            <div id="plot_div" class="log_div">
+        <div id="logs" class="tabcontent" style="display:flex; flex-direction:column; height:100%;">
+            <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:20px;">
+                <div id="load_log_btn" role="button" tabindex="0" title="Click to browse for a LAMMPS log file"
+                     style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:20px; background:var(--vscode-editor-background); color:var(--vscode-editor-foreground); border-radius:6px; cursor:pointer; transition:all 0.2s; user-select:none;">
+                    <span style="font-size:32px;">📂</span>
+                    <div style="text-align:center;">
+                        <div style="font-weight:600; font-size:14px;">Open LAMMPS Log File</div>
+                        <div style="font-size:11px; opacity:0.75; margin-top:2px;">Click to browse</div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:15px; padding:10px 15px; border-top:1px solid var(--vscode-panel-border);">
+                <label style="display:flex; align-items:center; gap:6px; user-select:none;">
+                  <input type="checkbox" id="live_update_toggle_logs" checked>
+                  Live Updates
+                </label>
+            </div>
+            <div id="plot_div" class="log_div" style="flex:2; overflow:auto;">
             <!-- Plotly chart will be drawn inside this DIV -->
             </div>
         </div>
