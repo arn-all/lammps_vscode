@@ -850,6 +850,8 @@ function build_plot_html(panel: PlotPanel, node_lib_path: Uri, plotly_lib: Uri, 
                   <input type="checkbox" id="live_update_toggle_logs" checked>
                   Live Updates
                 </label>
+                <button type="button" id="toggle_xaxis_btn" style="padding:5px 10px; font-size:12px; cursor:pointer;" title="Toggle X-axis between linear and logarithmic scale">X: Linear</button>
+                <button type="button" id="toggle_yaxis_btn" style="padding:5px 10px; font-size:12px; cursor:pointer;" title="Toggle Y-axis between linear and logarithmic scale">Y: Linear</button>
             </div>
             <div id="plot_div" class="log_div" style="flex:2; overflow:auto;">
             <!-- Plotly chart will be drawn inside this DIV -->

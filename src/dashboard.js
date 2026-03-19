@@ -8,11 +8,16 @@ window.onload = function () {
     var live_update_toggle_logs = document.getElementById('live_update_toggle_logs')
     var run_task_btn = document.getElementById('run_task_btn')
     var save_task_btn = document.getElementById('save_task_btn')
+    var toggle_xaxis_btn = document.getElementById('toggle_xaxis_btn')
+    var toggle_yaxis_btn = document.getElementById('toggle_yaxis_btn')
     var b_logs_plotted = false
     var b_dump_plotted = false
     var n_plots = 0
     var resizeTimeout = null;
     var firstDone = false;
+
+    // Axis scale state tracking
+    var axis_scale_state = { x: 'linear', y: 'linear' };
 
     // System view mode: 'info' | 'live' | 'graph'
     var sys_view_mode = 'info';
@@ -598,6 +603,14 @@ window.onload = function () {
         });
     })
 
+    toggle_xaxis_btn.addEventListener('click', () => {
+        toggle_axis_scale('x');
+    });
+
+    toggle_yaxis_btn.addEventListener('click', () => {
+        toggle_axis_scale('y');
+    });
+
     // Request active file when run tab is opened (only if not already set)
     document.getElementById("run_tab").addEventListener('click', function() {
         var scriptInput = document.getElementById('task_script');
@@ -697,6 +710,28 @@ window.onload = function () {
             }
         }
         return layout
+    }
+
+    function toggle_axis_scale(axis) {
+        axis_scale_state[axis] = axis_scale_state[axis] === 'linear' ? 'log' : 'linear';
+        
+        // Update button text
+        if (axis === 'x') {
+            toggle_xaxis_btn.textContent = 'X: ' + (axis_scale_state.x === 'log' ? 'Log' : 'Linear');
+        } else {
+            toggle_yaxis_btn.textContent = 'Y: ' + (axis_scale_state.y === 'log' ? 'Log' : 'Linear');
+        }
+        
+        // Update all visible plots
+        var panels = document.querySelectorAll('.panel');
+        panels.forEach(function(panel) {
+            var plot_div_id = panel.id;
+            if (plot_div_id && plot_div_id.startsWith('plot_div_')) {
+                var update = {};
+                update[axis + 'axis.type'] = axis_scale_state[axis];
+                Plotly.relayout(document.getElementById(plot_div_id), update);
+            }
+        });
     }
 
     function plot_performance_pie(plot_div, perf_data, panel_id) {
