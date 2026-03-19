@@ -74,7 +74,7 @@ button:hover {
 button:active {
     color: var(--vscode-button-foreground);
     background-color: var(--vscode-button-background);
-    border: 2px dashed var(--vscode-button-hoverBackground);
+    /* border: 2px dashed var(--vscode-button-hoverBackground); */
 }
 
 
@@ -121,7 +121,7 @@ button:active {
 .tab button.active {
     color: var(--vscode-button-secondaryForeground);
     background-color: var(--vscode-button-secondaryBackground);
-    border: 2px dashed var(--vscode-button-hoverBackground);
+    /* border: 2px dashed var(--vscode-button-hoverBackground); */
 }
 
 
@@ -182,7 +182,7 @@ button:active {
 
 .radio-toolbar input[type="radio"]:checked+label {
     color: var(--vscode-button-secondaryForeground);
-    border: 2px dashed var(--vscode-button-hoverBackground);
+    /* border: 2px dashed var(--vscode-button-hoverBackground); */
     background-color: var(--vscode-button-secondaryBackground);
 }
 
